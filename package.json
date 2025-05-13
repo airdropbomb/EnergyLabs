@@ -2,7 +2,7 @@
   "name": "NT EXHAUST - Bot Energy Labs Auto Daily",
   "version": "1.0.0",
   "description": "Bot Auto Daily Interactions Energy Labs",
-  "main": "bot.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js"
