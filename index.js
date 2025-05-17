@@ -70,7 +70,7 @@ function createSpinner(text) {
   return spinner;
 }
 
-cfonts.say('NT EXHAUST', {
+cfonts.say('ADB NODE', {
   font: 'block',
   align: 'center',
   colors: ['cyan', 'magenta'],
@@ -80,7 +80,7 @@ cfonts.say('NT EXHAUST', {
   space: true,
   maxLength: '0'
 });
-console.log(centerText('=== Telegram Channel 🚀 : NT EXHAUST (@ntexhaust) ==='));
+console.log(centerText('=== Telegram Channel 🚀 : ADB NODE (@airdropbombnode) ==='));
 console.log(centerText('✪  ENERGY LABS AUTO DAILY BOT  ✪'));
 console.log();
 
