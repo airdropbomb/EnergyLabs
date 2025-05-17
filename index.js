@@ -167,7 +167,10 @@ async function login(page, account) {
   const spinner = createSpinner(' Processing Login');
   spinner.start();
   try {
-    await page.goto('https://defi-energylabs.com/', { waitUntil: 'networkidle2', timeout: 60000 });
+    await page.goto('https://defienergylabs.com/', { waitUntil: 'networkidle2', timeout: 60000 });
+
+    await new Promise(resolve => setTimeout(resolve, 5000));
+
     await page.click('button[onclick="showForm(\'login\')"]');
     await page.waitForSelector('#login-form', { visible: true, timeout: 10000 });
     await page.type('#login-username', account.username || account.email);
@@ -176,7 +179,7 @@ async function login(page, account) {
       page.click('button[name="login"]'),
       page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 30000 })
     ]);
-    if (page.url() === 'https://defi-energylabs.com/dashboard') {
+    if (page.url() === 'https://defienergylabs.com/dashboard') {
       spinner.succeed(' Login Successful');
       return true;
     } else {
@@ -190,12 +193,11 @@ async function login(page, account) {
     return false;
   }
 }
-
 async function getDashboardInfo(page, account) {
   const spinner = createSpinner(' Getting Dashboard Info');
   spinner.start();
   try {
-    await page.goto('https://defi-energylabs.com/dashboard', { waitUntil: 'networkidle2', timeout: 60000 });
+    await page.goto('https://defienergylabs.com/dashboard', { waitUntil: 'networkidle2', timeout: 60000 });
     await page.waitForSelector('.balance-cards', { timeout: 10000 });
     const info = await page.evaluate(() => {
       const energyPoint = document.querySelector('.balance-cards .balance-card:nth-child(3) .balance-amount')?.textContent || 'N/A';
@@ -222,7 +224,7 @@ async function claimFaucet(page) {
   const spinner = createSpinner(' Processing Faucet Claim');
   spinner.start();
   try {
-    await page.goto('https://defi-energylabs.com/faucet', { waitUntil: 'networkidle2', timeout: 60000 });
+    await page.goto('https://defienergylabs.com/faucet', { waitUntil: 'networkidle2', timeout: 60000 });
     const isClaimed = await page.$('.claim-btn[disabled]');
     if (isClaimed) {
       spinner.succeed(chalk.bold.yellowBright(' Faucet Already Claimed Today'));
@@ -241,11 +243,11 @@ async function claimFaucet(page) {
 async function performSwap(page) {
   let currentSpinner = null;
   try {
-    await page.goto('https://defi-energylabs.com/swap', { waitUntil: 'networkidle2', timeout: 60000 });
+    await page.goto('https://defienergylabs.com/swap', { waitUntil: 'networkidle2', timeout: 60000 });
     for (let i = 0; i < 5; i++) {
       currentSpinner = createSpinner(` Processing Swap ${i + 1}/5`);
       currentSpinner.start();
-      await new Promise(resolve => setTimeout(resolve, 100)); 
+      await new Promise(resolve => setTimeout(resolve, 100));
       const swapsToday = await page.$eval('.swap-limit', el => el.textContent.match(/(\d+)\/5/)?.[1] || '0');
       if (parseInt(swapsToday) >= 5) {
         currentSpinner.succeed(chalk.bold.yellowBright(' Daily Swap Limit Reached'));
@@ -313,7 +315,7 @@ async function processAccount(account, proxyList, proxyIPs) {
     if (proxyIPs[proxy]) {
       const spinner = createSpinner(` Checking Proxy IP for Account`);
       spinner.start();
-      accountIP = await getLocalIP(proxy); 
+      accountIP = await getLocalIP(proxy);
       if (accountIP && accountIP !== await getLocalIP()) {
         anonymizedProxy = await ProxyChain.anonymizeProxy(proxy);
         browserArgs.push(`--proxy-server=${anonymizedProxy}`);
