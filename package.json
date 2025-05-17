@@ -1,21 +1,26 @@
 {
-  "name": "ADB NODE",
+  "name": "ADB NODE - Bot Energy Labs Auto Daily",
   "version": "1.0.0",
-  "description": "Energylabs Auto Bot",
+  "description": "Bot Auto Daily Interactions Energy Labs",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.7.0",
     "axios": "^1.7.7",
     "cfonts": "^3.3.0",
-    "chalk": "^4.1.2",
+    "chalk": "^5.3.0",
     "https-proxy-agent": "^7.0.5",
-    "inquirer": "^8.2.6",
-    "proxy-chain": "^2.5.0",
+    "inquirer": "^11.1.0",
+    "ora": "^8.1.0",
+    "proxy-chain": "^2.5.8",
+    "puppeteer": "^23.5.3",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
     "socks-proxy-agent": "^8.0.4"
-  }
+  },
+  "author": "VinzSenzo",
+  "license": "ISC"
 }
